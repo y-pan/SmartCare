@@ -14,7 +14,7 @@ export class SignupComponent implements OnInit {
   toDisplaySignUp:boolean;
   user: User;
   signUpErrs:any;
-  selectedUserType:Number;
+  usertype:number;
 
   isSubmitDisabled:boolean; /** to disable submit button when 2 passwords don't match */
 
@@ -48,7 +48,13 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     // this.display(false);
-    this.selectedUserType = 0; /** 0-nurse, 1-patient */
+    
+    this.reset();
+    this.mock_user();
+  }
+
+  reset(){
+    this.usertype = 0; /** 0-nurse, 1-patient */
     this.isSubmitDisabled = true;
     this.signUpErrs = [];
     this.user = {
@@ -59,10 +65,9 @@ export class SignupComponent implements OnInit {
       email:"",
       healthcard:"",
       phone:"",
-      responder:""
+      responder:"",
+      usertype:this.usertype
     }
-
-    this.mock_user();
   }
   display(toDisplay:boolean){
     this.toDisplaySignUp = toDisplay;
@@ -86,21 +91,26 @@ export class SignupComponent implements OnInit {
       email:"email_m1@gmail.com",
       healthcard: "100200401",
       phone:"6470000001",
-      responder:"panyunkui2@gmail.com"
+      responder:"panyunkui2@gmail.com",
+      usertype:0
     }
   }
 
-  chooseUserType(event){
-    // console.log("type: " + this.selectedUserType);
+  onSelectUserType(index){
+    this.usertype = index;
   }
   onSubmit(){
     this.signUpErrs = [];
-
+    if(!this.user){
+      this.signUpErrs = ["Invalid user info!"];
+      return;
+    }
     if(this.user.password != this.user.passwordAgain){
       this.signUpErrs = ["Passwords didn't match!"];
       return;
     }
-
+    // console.log(this.user);
+    this.user.usertype = this.usertype;
     this.dataService.userSignup(this.user).subscribe(data =>{
 
       if(data.err){
@@ -126,6 +136,7 @@ export class SignupComponent implements OnInit {
         this.dataService.setLoginUser(_user);
         this.messageService.filter(this.configService.MSG_USER_LOGGEDIN);
         this.messageService.filter(this.configService.MSG_SHOW_PROFILE); /** PROFILE is Home */
+        this.reset();
       }
     })
   }
@@ -141,4 +152,5 @@ interface User{
   healthcard:string;
   phone:string;
   responder:string;
+  usertype:number;
 }

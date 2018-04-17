@@ -32,6 +32,11 @@
           <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="showSendAlert()">Send Alert</a>
         </li>
 
+        <li class="nav-item" [ngClass]="{active :displayNav == 13}">
+          <!-- nurse enter patient data: vital signs -->
+          <a class="nav-link" *ngIf="isNurseLoggedIn" (click)="openSearchPatient()">Search Patient</a>
+        </li>
+
         <li class="nav-item" [ngClass]="{active :displayNav == 11}">
           <!-- nurse enter patient data: vital signs -->
           <a class="nav-link" *ngIf="isNurseLoggedIn" (click)="openEnterVitalSigns()">Enter Vital Signs</a>

@@ -105,10 +105,14 @@ export class NavComponent implements OnInit {
     // this.messageService.filter(this.configService.MSG_ON_NAV_LOGIN);
   }
 
+  openSearchPatient(){
+    this.displayNav = 13;
+    this.messageService.filter(this.configService.MSG_SHOW_SEARCHPATIENT);  
+  }
+
   openEnterVitalSigns(){
     this.displayNav = 11;
     this.messageService.filter(this.configService.MSG_SHOW_ENTERVITALSIGNS);  
-
   }
 
   openSendTips(){
@@ -132,6 +136,9 @@ export class NavComponent implements OnInit {
     this.messageService.filter(this.configService.MSG_SHOW_MYVITALSIGNS);
     // this.messageService.filter(this.configService.MSG_ON_NAV_ALLCOURSES);
   }
+
+
+
   showHome(){
     this.displayNav = 0;    
     this.messageService.filter(this.configService.MSG_SHOW_PROFILE);

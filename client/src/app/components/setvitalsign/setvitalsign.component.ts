@@ -13,6 +13,7 @@ export class SetvitalsignComponent implements OnInit {
   displaySetVitalsign:boolean;
   errorInSetVitalsign:string;
   okInSetVitalsign:string;
+  patientInfo:string;
   constructor(private configService:ConfigService
     , private dataService:DataService
     , private messageService:MessageService) { 
@@ -33,8 +34,11 @@ export class SetvitalsignComponent implements OnInit {
   
   display(toDisplay:boolean){
     this.displaySetVitalsign = toDisplay;
+
     if(toDisplay){
       // no need to get data from db, just show the form.
+      this.patientInfo = this.dataService.getTargetPatientBasic();
+
     }else{
       this.okInSetVitalsign = "";
     }
@@ -42,7 +46,12 @@ export class SetvitalsignComponent implements OnInit {
 
   onSubmit(){
     let json = this.vitalSigns;
-    json.patient = "5ad4e90749cc8826d466bef4";
+    let pid = this.dataService.getTargetPatientId();
+			if(!pid){
+				this.errorInSetVitalsign = "No patient selected yet, you should search & select a patient first.";
+				return;
+			}
+    json.patient = pid;
     this.dataService.addVitalsign(json).subscribe((res:Response) => {
       if(res['err']){
         this.errorInSetVitalsign = "Some error occurred, try again later";

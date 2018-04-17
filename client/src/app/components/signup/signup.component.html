@@ -12,9 +12,9 @@
         <div class='form-group row'>
             <label for="" class="col-4 col-form-label">You are a:</label>
             <div class="col-8">
-                <input type="radio" name="usertype" [value]="0" id="rdNurse" [(ngModel)]="selectedUserType" (ngModelChange)="chooseUserType($event)" />
+                <input type="radio" name="usertype" [checked]="0 == usertype" id="rdNurse"  (change)="onSelectUserType(0)" />
                 <label for="rdNurse">Nurse</label> |
-                <input type="radio" name="usertype" [value]="1" id="rdPatient"  [(ngModel)]="selectedUserType" (ngModelChange)="chooseUserType($event)" />
+                <input type="radio" name="usertype" [checked]="1 == usertype" id="rdPatient"  (change)="onSelectUserType(1)" />
                 <label for="rdPatient">Patient</label>
             </div>
         </div>

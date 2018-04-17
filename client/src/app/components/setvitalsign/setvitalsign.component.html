@@ -2,6 +2,7 @@
 
 	<form class="form-signin" (ngSubmit)="onSubmit()">
 		<h2 class="form-signin-heading">Add VitalSigns</h2>
+		<div *ngIf="patientInfo">Selected Patient: {{patientInfo}}</div>
 		<div class="err" *ngIf="errorInSetVitalsign" style="color:red;">
 			{{errorInSetVitalsign}}
 		</div>

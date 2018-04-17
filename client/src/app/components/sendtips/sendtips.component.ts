@@ -15,6 +15,7 @@ export class SendtipsComponent implements OnInit {
 	okInSendTips: string;
 	tipIds: string[];
 	isSet: boolean;
+	patientInfo:string;
 	constructor(
 		private configService: ConfigService
 		, private dataService: DataService
@@ -39,6 +40,7 @@ export class SendtipsComponent implements OnInit {
 		this.errorInSendTips = "";
 		this.displaySendTips = toDisplay;
 		if (toDisplay) {
+			this.patientInfo = this.dataService.getTargetPatientBasic();
 			this.tipIds = [];
 			this.dataService.getAllTips().subscribe((res: Response) => {
 				if (res['err']) {
@@ -59,14 +61,17 @@ export class SendtipsComponent implements OnInit {
 		} else {
 			this.tipIds.splice(this.tipIds.indexOf(id));
 		}
-
-
 	}
 	onSendTips() {
 		if (this.tipIds.length > 0) {
+			let pid = this.dataService.getTargetPatientId();
+			if(!pid){
+				this.errorInSendTips = "No patient selected yet, you should search & select a patient first.";
+				return;
+			}
 			let json = {
 				"tips": this.tipIds,
-				"patient": "5ad4e90749cc8826d466bef4",
+				"patient": pid,
 				"isSet": this.isSet
 			}
 			this.dataService.sendTips(json).subscribe((res: Response) => {

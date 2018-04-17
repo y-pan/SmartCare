@@ -121,7 +121,9 @@ userschema.statics.getById = (id) => {
     return new Promise((res, rej) => {
         self.findOne({ "_id": id }, (err, data) => {
             if (err) rej(err);
-            else res(data);
+            else { 
+                res(data);
+            }
         });
     });
 }
@@ -168,6 +170,12 @@ userschema.statics.searchPatient = (searchJson) => {
     return new Promise((res, rej) => {
         /** email */
         searchJson.usertype = 1;
+        
+        for(var att in searchJson){
+            if(searchJson[att] === null ||searchJson[att] ===undefined || searchJson[att] === ""){
+                delete searchJson[att];
+            }
+        }
 
         self.find(searchJson, (err, data) => {
             if (err) rej(err);

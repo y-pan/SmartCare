@@ -1,0 +1,133 @@
+<div class="container" *ngIf="toDisplaySearchPatient">
+   <!--searchPatient -->
+  <div class="err" style="color:red;" *ngIf="errInSearchPatient">
+      {{errInSearchPatient}}
+  </div>
+  <div class="ok" style="color:green;" *ngIf="okInSearchPatient">
+      {{okInSearchPatient}}
+  </div>
+  <div *ngIf="patientInfo">Selected Patient: {{patientInfo}}</div>
+
+  <form method="POST" (ngSubmit)="onSubmit()">
+
+      Search by (can be multiple conditions):
+      <div class="form-group row">
+          <label for="searchEmail" class="col-4 col-form-label">Email:</label>
+          <div class="col-8">
+              <input id="searchEmail" [(ngModel)]="searchPatient.email" name="searchPatient.email" type="text" class="form-control"
+                  placeholder="Enter Patient's Email">
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <label for="searchFirstname" class="col-4 col-form-label">First Name:</label>
+          <div class="col-8">
+              <input id="searchFirstname" [(ngModel)]="searchPatient.firstname" name="searchPatient.firstname" type="text" class="form-control" placeholder="Enter Patient's First Name">
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="searchLastname" class="col-4 col-form-label">Last Name:</label>
+          <div class="col-8">
+              <input id="searchLastname" [(ngModel)]="searchPatient.lastname" name="searchPatient.lastname" type="text" class="form-control" placeholder="Enter Patient's Last Name">
+          </div>
+      </div>
+      
+      <div class="form-group row">
+          <label for="searchHealthcard" class="col-4 col-form-label">Health Card #:</label>
+          <div class="col-8">
+              <input id="searchHealthcard" [(ngModel)]="searchPatient.healthcard" name="searchPatient.healthcard" type="text" class="form-control" placeholder="Enter Patient's Health card number">
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <label for="searchPhone" class="col-4 col-form-label">Phone:</label>
+          <div class="col-8">
+              <input id="searchPhone" [(ngModel)]="searchPatient.phone" name="searchPatient.phone" type="text" class="form-control" placeholder="Enter Patient's phone">
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="searchResponder" class="col-4 col-form-label">First Responder:</label>
+          <div class="col-8">
+              <input id="searchResponder" [(ngModel)]="searchPatient.responder" name="searchPatient.responder" type="text" class="form-control" placeholder="Enter Patient's first responder">
+          </div>
+      </div>
+
+      <input id="btnSearchPatient" type="submit" value="Search" class="btn btn-primary" />
+
+ </form>
+ <hr>
+ <!--targetPatient -->
+ <form *ngIf="targetPatient">
+  <label for="" class="col-4 col-form-label">Selected Patient info:</label>
+  <div class="form-group row">
+      <label for="targetPatientEmail" class="col-4 col-form-label">Email:</label>
+      <div class="col-8">
+          <input id="targetPatientEmail" readonly [(ngModel)]="targetPatient.email" name="targetPatient.email" type="text" class="form-control"
+              placeholder="Enter Patient's Email">
+      </div>
+  </div>
+
+  <div class="form-group row">
+      <label for="targetPatientFirstname" class="col-4 col-form-label">First Name:</label>
+      <div class="col-8">
+          <input id="targetPatientFirstname" readonly [(ngModel)]="targetPatient.firstname" name="targetPatient.firstname" type="text" class="form-control" placeholder="Enter Patient's First Name">
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for="targetPatientLastname" class="col-4 col-form-label">Last Name:</label>
+      <div class="col-8">
+          <input id="targetPatientLastname"  readonly  [(ngModel)]="targetPatient.lastname" name="targetPatient.lastname" type="text" class="form-control" placeholder="Enter Patient's Last Name">
+      </div>
+  </div>
+  
+  <div class="form-group row">
+      <label for="targetPatienthHealthcard" class="col-4 col-form-label">Health Card #:</label>
+      <div class="col-8">
+          <input id="targetPatientHealthcard" readonly  [(ngModel)]="targetPatient.healthcard" name="targetPatient.healthcard" type="text" class="form-control" placeholder="Enter Patient's Health card number">
+      </div>
+  </div>
+
+  <div class="form-group row">
+      <label for="targetPatientPhone" class="col-4 col-form-label">Phone:</label>
+      <div class="col-8">
+          <input id="targetPatientPhone" readonly  [(ngModel)]="targetPatient.phone" name="targetPatient.phone" type="text" class="form-control" placeholder="Enter Patient's phone">
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for="targetPatientResponder" class="col-4 col-form-label">First Responder:</label>
+      <div class="col-8">
+          <input id="targetPatientResponder" readonly  [(ngModel)]="targetPatient.responder" name="targetPatient.responder" type="text" class="form-control" placeholder="Enter Patient's first responder">
+      </div>
+  </div>
+</form>
+
+<!--SearchPatient results -->
+<hr>
+<table class="table" *ngIf="searchPatientResults">
+    <thead class="thead-dark">
+      <tr>
+          <th scope="col">#</th>
+          <th scope="col">Patients</th>
+          <th scope="col">Select</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of searchPatientResults; let i=index">
+        <th scope="row">{{i +1}}</th>
+        <td>
+          FirstName: {{p.firstname}}<br>
+          Lastname: {{p.lastname}}<br>
+          Health Card#: {{p.healthcard}}<br>
+          Email: {{p.email}}<br>
+          Phone: {{p.phone}}<br>
+          Responder: {{p.responder}}<br>
+        </td>
+       <td>
+           <input type="radio" name="selectTargetPatient" [checked]="p._id == targetPatientId" id="{{p._id}}" (change)="onSelect(i, p._id)">
+           <label for="{{p._id}}">Select</label>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>

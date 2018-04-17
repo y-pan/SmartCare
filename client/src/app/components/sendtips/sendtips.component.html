@@ -8,6 +8,7 @@
   <div class="ok" *ngIf="okInSendTips" style="color:green;">
       {{okInSendTips}}
     </div>
+    <div *ngIf="patientInfo">Selected Patient: {{patientInfo}}</div>
     <table class="table" *ngIf="tips">
     <thead class="thead-dark">
       <tr>

@@ -8,7 +8,7 @@ import {ConfigService} from './config.service'
 @Injectable()
 export class DataService {
   loginUser:any; /** after signup/login, keep the user info here */
-
+  targetPatient:any; /** when nurse searched and select the patient, this obj will be set */
   serverMode:number = 0; /** 0-heroku, 1-localhost */
   
   getBaseApi(serverMode:number){
@@ -157,5 +157,30 @@ export class DataService {
      this.loginUser = user;
    }
 
+   getTargetPatient(){
+     return this.targetPatient;
+   }
+
+   getTargetPatientId(){
+     if(this.targetPatient){
+      return this.targetPatient['_id'];
+     }else{
+       return "";
+     }
+  }
+  getTargetPatientBasic(){
+    if(this.targetPatient){
+      return this.targetPatient['firstname'] + " " +  this.targetPatient['lastname'] 
+      +"|" + this.targetPatient['healthcard']
+      + "|" + this.targetPatient["email"];
+    }else{
+      return "";
+    }
+    
+  }
+
+   setTargetPatient(patient:any){
+     this.targetPatient = patient;
+   }
 }
 
