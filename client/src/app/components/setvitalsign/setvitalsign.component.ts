@@ -35,6 +35,8 @@ export class SetvitalsignComponent implements OnInit {
     this.displaySetVitalsign = toDisplay;
     if(toDisplay){
       // no need to get data from db, just show the form.
+    }else{
+      this.okInSetVitalsign = "";
     }
   }
 
