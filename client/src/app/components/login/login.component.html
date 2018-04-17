@@ -1,0 +1,24 @@
+
+<div class="container" *ngIf="toDisplayLogin">
+
+  <form class="form-signin" (ngSubmit)="onSubmit()">
+    <h2 class="form-signin-heading">User Login</h2>
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="text" id="inputEmail" name="credential.email" [(ngModel)]="credential.email" class="form-control" placeholder="email" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="credential.password" [(ngModel)]="credential.password"  class="form-control" placeholder="Password" required>
+
+    
+    <input type="radio" name="usertype" [value]="0" id="rdNurse" [(ngModel)]="selectedUserType" (ngModelChange)="chooseUserType($event)" />
+    <label for="rdNurse">Nurse</label> |
+    <input type="radio" name="usertype" [value]="1" id="rdPatient"  [(ngModel)]="selectedUserType" (ngModelChange)="chooseUserType($event)" />
+    <label for="rdPatient">Patient</label>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+
+    <div class="err" style="color:red;">
+        {{loginErr}}
+    </div>
+  </form>
+
+</div> <!-- /container -->

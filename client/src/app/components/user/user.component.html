@@ -1,0 +1,43 @@
+<div class="container" *ngIf="toDisplayProfile">
+    <h3 *ngIf="user.usertype == 0" >Nurse Profile</h3>
+    <h3 *ngIf="user.usertype == 1" >Patient Profile</h3>
+
+    
+
+    <table class="table">
+        <input type="text" hidden value="{{user._id}}">
+        <tbody>
+          
+            <tr>
+                <th scope="row">First Name</th>
+                <td>{{user.firstname}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Last Name</th>
+                <td>{{user.lastname}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Email</th>
+                <td>{{user.email}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Health Card #</th>
+                <td>{{user.healthcard}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Phone</th>
+                <td>{{user.phone}}</td>
+            </tr>     
+            <tr>
+                <th scope="row">First Responder</th>
+                <td>{{user.responder}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Registerred Date:</th>
+                <td>{{user.date}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

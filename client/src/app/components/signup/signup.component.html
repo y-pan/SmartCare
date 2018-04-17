@@ -1,0 +1,83 @@
+<div class="container" *ngIf="toDisplaySignUp">
+    <h3>User SignUp</h3>
+    <div class="err" style="color:red;" *ngIf="signUpErrs.length > 0">
+        Failed to submit due to {{signUpErrs.length}} error(s) in form:
+        <ul>
+            <li *ngFor="let err of signUpErrs; let i = index">
+                {{i+1}} - {{err}}
+            </li>
+        </ul>
+    </div>
+    <form method="POST" (ngSubmit)="onSubmit()">
+        <div class='form-group row'>
+            <label for="" class="col-4 col-form-label">You are a:</label>
+            <div class="col-8">
+                <input type="radio" name="usertype" [value]="0" id="rdNurse" [(ngModel)]="selectedUserType" (ngModelChange)="chooseUserType($event)" />
+                <label for="rdNurse">Nurse</label> |
+                <input type="radio" name="usertype" [value]="1" id="rdPatient"  [(ngModel)]="selectedUserType" (ngModelChange)="chooseUserType($event)" />
+                <label for="rdPatient">Patient</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-4 col-form-label">Email:</label>
+            <div class="col-8">
+                <input id="email" [(ngModel)]="user.email" name="user.email" type="text" class="form-control"
+                    placeholder="email">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="firstname" class="col-4 col-form-label">First Name:</label>
+            <div class="col-8">
+                <input id="firstname" [(ngModel)]="user.firstname" name="user.firstname" type="text" class="form-control" placeholder="Enter your First Name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lastnameFr" class="col-4 col-form-label">Last Name:</label>
+            <div class="col-8">
+                <input id="lastnameFr" [(ngModel)]="user.lastname" name="user.lastname" type="text" class="form-control" placeholder="Enter your Last Name">
+            </div>
+        </div>
+
+        
+        <div class="form-group row">
+            <label for="healthcard" class="col-4 col-form-label">Health Card #:</label>
+            <div class="col-8">
+                <input id="healthcard" [(ngModel)]="user.healthcard" name="user.healthcard" type="text" class="form-control" placeholder="Health card number">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="phoneFr" class="col-4 col-form-label">Phone:</label>
+            <div class="col-8">
+                <input id="phoneFr" [(ngModel)]="user.phone" name="user.phone" type="text" class="form-control" placeholder="Enter your phone">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="responder" class="col-4 col-form-label">Your First Responder:</label>
+            <div class="col-8">
+                <input id="responder" [(ngModel)]="user.responder" name="user.responder" type="text" class="form-control" placeholder="Enter your first responder">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+
+            <label for="passwordFr" class="col-4 col-form-label">Password:</label>
+            <div class="col-8">
+                <input id="passwordFr" [(ngModel)]="user.password" name="user.password" type="password" class="form-control" placeholder="Enter your Password">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="passwordAgainFr" class="col-4 col-form-label">Confirm Password:</label>
+            <div class="col-8">
+                <input id="passwordAgainFr" (input)="match2Passwords()" [(ngModel)]="user.passwordAgain" name="user.passwordAgain"
+                    type="password" class="form-control" placeholder="Enter your Password Again">
+            </div>
+        </div>
+
+
+
+        <input id="btnSignUp" type="submit" [disabled]="isSubmitDisabled" value="Sign Up" class="btn btn-primary" />
+
+    </form>
+</div>

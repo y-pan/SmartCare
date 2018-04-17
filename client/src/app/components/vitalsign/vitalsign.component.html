@@ -1,0 +1,31 @@
+
+<div class="container" *ngIf="displayVitalsign">
+    <h3>All Courses</h3>
+    <div class="err" *ngIf="errorInVitalsign" style="color:red;">
+        {{errorInVitalsign}}
+      </div>
+    <table class="table" *ngIf="vitalsigns">
+      <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th >
+            <th scope="col">Temperature</th >
+            <th scope="col">Heart Rate</th>
+            <th scope="col">Blood Pressure</th>
+            <th scope="col">Respiratory</th>
+            <th scope="col">Date</th>  
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let v of vitalsigns; let i=index">
+          <th scope="row">{{i +1}}</th>
+          <td>{{v.temperature}}</td>
+          <td>{{v.heartrate}}</td>
+          <td>{{v.bloodpressure}}</td>
+          <td>{{v.respiratory}}</td>
+          <td>{{v.date}}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="!vitalsigns">No test result currently available.</div>
+  </div>

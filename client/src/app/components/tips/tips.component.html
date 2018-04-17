@@ -1,0 +1,23 @@
+
+<div class="container" *ngIf="displayMyTips">
+    <h3>Today's Tips</h3>
+    <div class="err" *ngIf="errorInMyTips" style="color:red;">
+        {{errorInMyTips}}
+      </div>
+    <table class="table" *ngIf="tips">
+      <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th >
+            <th scope="col">Tips</th >
+            
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of tips; let i=index">
+          <th scope="row">{{i +1}}</th>
+          <td>{{t.content}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="!tips">No Tips currently available.</div>
+  </div>

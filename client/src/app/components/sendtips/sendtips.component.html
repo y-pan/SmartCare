@@ -1,0 +1,36 @@
+
+<div class="container" *ngIf="displaySendTips">
+  <h3>Send Tips</h3>
+
+  <div class="err" *ngIf="errorInSendTips" style="color:red;">
+      {{errorInSendTips}}
+    </div>
+  <div class="ok" *ngIf="okInSendTips" style="color:green;">
+      {{okInSendTips}}
+    </div>
+    <table class="table" *ngIf="tips">
+    <thead class="thead-dark">
+      <tr>
+          <th scope="col">#</th >
+          <th scope="col">Tips</th >
+          <th scope="col">Select</th >
+      </tr>
+      <tr>
+        <td scope="col">Action</td>
+        <td scope="col" colspan="2">
+          <input type="checkbox" id="emptyExistingTips" [ngModel]="_" (ngModelChange)="onIsSet($event)"><label for="emptyExistingTips">Empty Patient's Existing Tips</label>
+          <button (click)="onSendTips()">Send</button>
+        </td>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of tips; let i=index">
+        <th scope="row">{{i +1}}</th>
+        <td>{{t.content}}</td>
+        <td><input type="checkbox" id="{{t._id}}" [ngModel]="_" (ngModelChange)="onSelect($event, t._id)"><label for="{{t._id}}">Select</label></td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!tips">No Tips currently available.</div>
+</div>

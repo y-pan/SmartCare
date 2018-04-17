@@ -1,0 +1,31 @@
+<div class="container" *ngIf="displaySetVitalsign">
+
+	<form class="form-signin" (ngSubmit)="onSubmit()">
+		<h2 class="form-signin-heading">Add VitalSigns</h2>
+		<div class="err" *ngIf="errorInSetVitalsign" style="color:red;">
+			{{errorInSetVitalsign}}
+		</div>
+		<div class="err" *ngIf="okInSetVitalsign" style="color:green;">
+			{{okInSetVitalsign}}
+		</div>
+		
+		<label for="temperature" class="sr-only">Temperature</label>
+		<input type="text" id="temperature" name="vitalSigns.temperature" [(ngModel)]="vitalSigns.temperature" class="form-control"
+		 placeholder="Temperature" autofocus>
+		<label for="heartRate" class="sr-only">Heart Rate</label>
+		<input type="text" id="heartRate" name="vitalSigns.heartrate" [(ngModel)]="vitalSigns.heartrate" class="form-control" placeholder="Heart Rate">
+
+		<label for="bloodpressure" class="sr-only">Blood Pressure</label>
+		<input type="text" id="heartRate" name="vitalSigns.bloodpressure" [(ngModel)]="vitalSigns.bloodpressure" class="form-control"
+		 placeholder="Blood Pressure">
+
+		<label for="respiratory" class="sr-only">Respiratory</label>
+		<input type="text" id="heartRate" name="vitalSigns.respiratory" [(ngModel)]="vitalSigns.respiratory" class="form-control"
+		 placeholder="Respiratory">
+
+
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+
+	</form>
+</div>

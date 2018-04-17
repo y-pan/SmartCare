@@ -1,0 +1,5 @@
+{
+    "port":"80"
+    ,"dburl":"mongodb://localhost:27017/comp308_smartcare"
+    ,"secret":"dummy secret"
+}
