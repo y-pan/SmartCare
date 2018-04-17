@@ -37,7 +37,6 @@ const all = (req, res) =>{
 
 const getByPatient = (req, res) =>{
     let patient = req.params.patient; /** it is _id */
-    console.log("get vitalsigns by patient_id...")
     VitalsignModel.getByPatient(patient)
         .then(vitalsigns =>{
             res.json({data:vitalsigns});

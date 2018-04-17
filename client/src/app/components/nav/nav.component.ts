@@ -121,7 +121,11 @@ export class NavComponent implements OnInit {
     this.messageService.filter(this.configService.MSG_SHOW_MYTIPS);  
     // this.messageService.filter(this.configService.MSG_ON_NAV_MYCOURSES);
   }
-
+  showSendAlert(){
+    this.displayNav = 3;
+    this.messageService.filter(this.configService.MSG_SHOW_SENDALERT);  
+    
+  }
   getMyVitalSigns(){
     this.displayNav = 1;
     

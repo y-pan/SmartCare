@@ -64,8 +64,6 @@ export class SendtipsComponent implements OnInit {
 	}
 	onSendTips() {
 		if (this.tipIds.length > 0) {
-			console.log("send tips...")
-			console.log(this.tipIds)
 			let json = {
 				"tips": this.tipIds,
 				"patient": "5ad4e90749cc8826d466bef4",
@@ -84,6 +82,5 @@ export class SendtipsComponent implements OnInit {
 	}
 	onIsSet(e) {
 		this.isSet = e;
-		console.log(this.isSet)
 	}
 }

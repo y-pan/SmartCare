@@ -91,10 +91,9 @@ export class SignupComponent implements OnInit {
   }
 
   chooseUserType(event){
-    console.log("type: " + this.selectedUserType);
+    // console.log("type: " + this.selectedUserType);
   }
   onSubmit(){
-    console.log("attempt to signup...")
     this.signUpErrs = [];
 
     if(this.user.password != this.user.passwordAgain){
@@ -103,8 +102,7 @@ export class SignupComponent implements OnInit {
     }
 
     this.dataService.userSignup(this.user).subscribe(data =>{
-      console.log("signup response...")
-      console.log(data);
+
       if(data.err){
         let dbErr = data["err"];
         if(dbErr["errmsg"]){
@@ -131,49 +129,7 @@ export class SignupComponent implements OnInit {
       }
     })
   }
-  // onSubmit(){
-  //   if(this.student.password != this.student.passwordAgain){
-  //     this.signUpErrs = ["Passwords didn't match!"];
-  //     return;
-  //   }
-  //   this.dataService.signup(this.student).subscribe(data => {
-  //     this.signUpErrs = [];
-  //     // console.log("err...")
-  //     // console.log(data["err"])
-  //     // console.log("data...")
-  //     // console.log(data["data"])
-
-  //     if(data["err"]){
-  //       let dbErr = data["err"];
-  //       if(dbErr["errmsg"]){
-  //         this.signUpErrs.push(dbErr["errmsg"]);
-  //       }else{
-  //         if(dbErr instanceof Object){
-
-  //         }else{
-  //           this.signUpErrs.push(dbErr)
-  //         }
-  //       }
-
-  //       let errors = data["err"]["errors"]; /** validation errors */
-  //       for(var prop in errors){
-  //         if(errors.hasOwnProperty(prop)){
-  //           this.signUpErrs.push(errors[prop]["message"]);
-  //         }
-  //       }
-  //     }else{
-
-  //       if(!data["data"]){
-  //         this.signUpErrs.push('Unknow error occurred!')
-  //         return;
-  //       }else{
-  //         this.dataService.setStudent(data["data"]);
-  //         this.messageService.filter(this.configService.MSG_USER_LOGGEDIN);
-  //         this.messageService.filter(this.configService.MSG_SHOW_PROFILE); /** PROFILE is Home */
-  //       }
-  //     }
-  //   })
-  // }
+ 
 }
 
 interface User{

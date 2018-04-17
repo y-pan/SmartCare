@@ -12,7 +12,8 @@ export class ConfigService {
   
   MSG_SHOW_MYTIPS: string = "showMyTips"; /** show tips for patient, sent by a nurse */
   MSG_SHOW_MYVITALSIGNS:string = "showMyVitalsigns"; /** show vitalsigns for patient, added by a nurse */
-  
+  MSG_SHOW_SENDALERT:string = "MSG_SHOW_ALERT";
+
   MSG_SHOW_ENTERVITALSIGNS:string="showEnterVitalSigns"; /** for nurse */
   MSG_SHOW_SENDTIPS:string = "showSendTips"; /** for nurse */
 

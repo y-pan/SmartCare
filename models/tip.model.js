@@ -22,7 +22,6 @@ tipSchema.statics.all = () => {
 }
 
 tipSchema.statics.add = (tip) => { // tip is mongose instance(object). so add new tip entity
-console.log("add tip...")
     return new Promise((res, rej) => {
         tip.save((err, data) => {
             if (err) rej(err);

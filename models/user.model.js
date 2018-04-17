@@ -69,13 +69,10 @@ userschema.statics.all = () => {
 }
 
 userschema.statics.allPatients = () => {
-    console.log("find all patients...")
     return new Promise((res, rej) => {
         self.find({"usertype":1}, (err, data) => {
-            
             if (err) rej(err);
             else { 
-                console.log("num of pat: "+data.length)
                 res(data);
             }
         });
@@ -107,8 +104,7 @@ userschema.statics.add = (user) => { // user is mongose instance(object). so add
                 user.save((err, data) => {
                     if (err) {reject(err);}
                     else {
-                        // console.log("req.login ??? ...")
-                        // req.login(data._id);
+
                         if(!data){
                             reject("Unknow Error!");
                         }else{
@@ -135,7 +131,6 @@ userschema.statics.getById = (id) => {
  */
 userschema.statics.getByEmailPasswordEncrypted= (email, password) => {
     return new Promise((res, rej) => {
-        console.log(email, password)
         self.findOne({ "email": email}, (err, data) => {
             if (err) {
                  rej(err); 
@@ -147,10 +142,7 @@ userschema.statics.getByEmailPasswordEncrypted= (email, password) => {
                     /** compare incomming plain pass & encrypted pass in db */
                     
                     bcrypt.compare(password, data.password, function(err, isMath){
-                        console.log(password + " | " + data.password)
                         if(err) { rej(err);return; }//throw err; /** throw will break down server? */
-                        console.log("isMath:"+isMath)
-                        console.log(isMath)
                         if(isMath){
                             res(data);
                         }else{
@@ -254,13 +246,9 @@ userschema.statics.setTips = (patient, tips, isSet) =>{ /** patient is patient's
                 reject(err); 
                 }
             else {
-                console.log("isSet = " + isSet);
                 if(isSet == 1){
-                    console.log(" overwrite tips ")
                     data.tips = tips; /** overwrite whole array */
                 }else{
-                    console.log(" append tips ")
-
                     if(!data.tips){
                         data.tips = []
                     }
@@ -292,20 +280,17 @@ userschema.statics.setTips = (patient, tips, isSet) =>{ /** patient is patient's
 
 /* schema instance method, available for returned object, like you insert/find data, and you get the data back which is an instance, then you have all instance methods like this */
 userschema.methods.validateSelf = function () {
-    console.log("validateSelf: " + this.firstname + " from instance method");
+    // console.log("validateSelf: " + this.firstname + " from instance method");
 }
 
 // same with module.exports.comparePassword = function(xxx){}  userschema.methods.comparePassword
 userschema.methods.comparePassword = function(candidatePassword, hash, callback){
-    console.log("compare password: " + candidatePassword + " | "+hash)
     bcrypt.compare(candidatePassword, hash, function(err, isMath){
-        //if(err) throw err; /** would this break down server? */
-        //callback(null, isMath);
+
         callback(err, isMath);
     });
 }
 userschema.methods.verifyPassword = function(candidatePassword){
-    console.log("verifyPassword: " + candidatePassword + " | pass in db: " + this.password);
     bcrypt.compare(candidatePassword, this.password, function(err, isMath){
         if(err) throw err; /** would this break down server? */
         callback(null, isMath);
@@ -314,7 +299,6 @@ userschema.methods.verifyPassword = function(candidatePassword){
 
 
 userschema.methods.validatePassword = function () {
-    console.log("validatePassword: " + this.password + " from instance method");
     if(lib.validatePassword(this.password)){
         return true; /** password format is qualified */
     }else{

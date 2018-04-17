@@ -19,6 +19,10 @@ router.route('/getMyTips/:patient').get(userController.getMyTips); /** */
 
 router.route('/sendTip').post(userController.sendTip); /** for nurse send tips (content ready) to patient */
 
+router.route('/alert').post(userController.alert); /** for nurse send tips (content ready) to patient */
+
+
+
 router.route('/debug').get((req,res)=>{
     res.json({"debug":"OK"})
 })

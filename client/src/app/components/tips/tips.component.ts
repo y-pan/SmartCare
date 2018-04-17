@@ -20,7 +20,6 @@ export class TipsComponent implements OnInit {
     , private messageService:MessageService) { 
       this.messageService.listen().subscribe((msg:any)=>{
         if(msg == this.configService.MSG_SHOW_MYTIPS){
-          console.log("MSG_SHOW_MYTIPS ")
           this.display(true);
         }else{
           this.display(false);
@@ -63,10 +62,7 @@ export class TipsComponent implements OnInit {
       if(!this.hasReloaded){
         this.fetchTipsDetail(this.user.tips);
       }
-    //   this.dataService.getMyTips(this.user['_id']).subscribe((res:Response)=>{
-    //     this.tips = res['data'];
-    //     console.log(this.tips);
-    //   });
+
     }
   }
 
@@ -74,7 +70,6 @@ export class TipsComponent implements OnInit {
       if(!tipIds || tipIds.length == 0){
           return;
       }
-      console.log("do fetchTipsDetail...");
       this.dataService.getTipsDetails(tipIds).subscribe((res:Response) =>{
           if(res['err']){
               this.errorInMyTips = "Some error, try to refresh later.";

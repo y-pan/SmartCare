@@ -39,16 +39,6 @@ const getTips = (req, res) =>{
         res.json({err:err});
     })
 }
-// const sendTips = (req, res) =>{
-//     let patient = req.params.patient; /** it is _id */
-//     console.log("get tips by patient_id...")
-//     TipModel.sendTips(patient)
-//         .then(data =>{
-//             res.json({data:data});
-//         }).catch(err => {
-//             res.json({err:err});
-//         });
-// }
 
 
 module.exports = {

@@ -1,0 +1,22 @@
+<div class="container" *ngIf="displayAlertEmail">
+  <div class="err" *ngIf="errorInAlertEmail" style="color:red;">
+    {{errorInAlertEmail}}
+  </div>
+  <div class="err" *ngIf="okInAlertEmail" style="color:green;">
+    {{okInAlertEmail}}
+  </div>
+
+    <form method="POST" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstResponder">First Responder</label>
+        <input type="email" [(ngModel)]="alertEmail.to" name="alertEmail.to" class="form-control" id="firstResponder" placeholder="Enter your responder's email">
+      </div>
+            
+      <div class="form-group">
+        <label for="alertMessage">Alert Message</label>
+        <textarea class="form-control" [(ngModel)]="alertEmail.text" name="alertEmail.text" id="alertMessage" rows="3" placeholder="-- It's OK to leave it blank. Your info is included automatically. --"></textarea>
+      </div>
+      <input type="submit" value="Send" class="btn btn-primary btn-lg" />
+
+    </form>
+</div>

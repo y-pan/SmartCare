@@ -17,6 +17,7 @@ import { VitalsignComponent } from './components/vitalsign/vitalsign.component';
 import { TipsComponent } from './components/tips/tips.component';
 import { SetvitalsignComponent } from './components/setvitalsign/setvitalsign.component';
 import { SendtipsComponent } from './components/sendtips/sendtips.component';
+import { EmailComponent } from './components/email/email.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SendtipsComponent } from './components/sendtips/sendtips.component';
     VitalsignComponent,
     TipsComponent,
     SetvitalsignComponent,
-    SendtipsComponent
+    SendtipsComponent,
+    EmailComponent
   ],
   imports: [
     BrowserModule,

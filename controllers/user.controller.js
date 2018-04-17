@@ -1,12 +1,26 @@
 /** do db work here */
 const UserModel = require('../models/user.model');
-
 const lib = require('../lib/lib');
+
+let emailCred = {};
+if(process.env.heroku_deploy_mark){
+    emailCred['user'] = process.env.eu;
+    emailCred['pass'] = process.env.ep;
+}else{
+    const cred = require('../config/cred.json');
+    emailCred['user'] = cred.eu;
+    emailCred['pass'] = cred.ep;
+}
+
+const gSend = require('gmail-send')({
+    user:emailCred['user'],
+    pass:emailCred['pass']
+})
+
 
 const loginEncrypted = (req, res) => {
     /** This method assumes that password in db was encrypted during signup, 
      * incomming plain password need to compare with hashed password using bcrypt */
-    console.log("@@@@@@@@@login in usercontrollerjs, encrypted")
     UserModel.getByEmailPasswordEncrypted(req.body.email, req.body.password)
         .then((user)=>{
             if(user.usertype == req.body.usertype ){
@@ -42,7 +56,6 @@ const getMyTips = (req, res) =>{
 }
 const checkTipChanged = (req, res) =>{
     let id = req.params.patient; /** it is _id */
-    console.log('checkTipChanged: ' + id)
     UserModel.checkTipChanged(id)  // call for UserModel static methods
         .then(data =>{
             res.json({data:data});
@@ -124,6 +137,33 @@ const sendTip = (req, res) =>{
         })
 }
 
+
+const alert = (req, res) =>{
+    let emailJson = {}
+    let senderEmail = req.body.from || "N/A";
+    let senderFullname = req.body.fullname || "N/A";
+    let senderPhone = req.body.phone || "N/A";
+    let senderHealthNum = req.body.healthcard || "N/A";
+
+    let textHead = `Please act on critical alert from: ${senderFullname} (Health card#: ${senderHealthNum} Email: ${senderEmail}, Phone: ${senderPhone})\n`;
+    
+    emailJson.from = req.body.from || emailJson.from;
+    emailJson.to = req.body.to;
+    emailJson.subject = req.body.subject || "SmartCare Alert Message From: " + senderFullname;
+    if(req.body.text){
+        emailJson.text = textHead +"---------- sender message ---------\n"+ req.body.text
+    }
+    
+    
+    gSend(emailJson, (err, data)=>{
+         if(err){
+             res.json({err:err});
+         }else{
+             res.json({data:data})
+         }
+     })
+}
+
 module.exports = {
      "login":loginEncrypted
     , "add":add   /** just like signup */
@@ -135,4 +175,5 @@ module.exports = {
     , "searchPatient":searchPatient
     ,"getMyTips":getMyTips
     ,"checkTipChanged":checkTipChanged
+    ,"alert":alert
 }

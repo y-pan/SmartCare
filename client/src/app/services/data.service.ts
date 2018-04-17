@@ -140,8 +140,14 @@ export class DataService {
     return this.http.post(url, JSON.stringify(tipJson), headers).map((res:Response) => res.json());
   }
 
+  sendAlertEmail(alertEmailJson){
+    let url = this.getBaseApi(this.serverMode) + "user/alert";
+    let headers:any = { headers: new Headers({ 'Content-Type': 'application/json' })};
+    return this.http.post(url, JSON.stringify(alertEmailJson), headers).map((res:Response) => res.json());
+  }
+
   constructor(public http:Http, private configService:ConfigService) {
-    console.log('Data service is connected ... ');
+    // console.log('Data service is connected ... ');
    }
 
    getLoginUser(){

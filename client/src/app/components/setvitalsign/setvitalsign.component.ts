@@ -39,7 +39,6 @@ export class SetvitalsignComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.vitalSigns)
     let json = this.vitalSigns;
     json.patient = "5ad4e90749cc8826d466bef4";
     this.dataService.addVitalsign(json).subscribe((res:Response) => {
