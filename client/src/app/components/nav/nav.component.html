@@ -23,6 +23,10 @@
           <!-- patient view related tests (vitalsigns) -->
           <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="getMyVitalSigns()">Tests</a>
         </li>
+        <li class="nav-item" [ngClass]="{active :displayNav == 4}">
+          <!-- patient view related tips -->
+          <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="getSymptoms()">Symptoms</a>
+        </li>
         <li class="nav-item" [ngClass]="{active :displayNav == 2}">
           <!-- patient view related tips -->
           <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="getMyTips()">Tips</a>

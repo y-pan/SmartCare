@@ -1,0 +1,33 @@
+
+<div class="container" *ngIf="displaySymptoms">
+  <h3>Check your symptoms (Always consult you doctor for any concern)</h3>
+  <div class="err" *ngIf="errorInSymptoms" style="color:red;">
+      {{errorInSymptoms}}
+    </div>
+  <div class="disease" *ngIf="disease">Looks like you're having: {{disease.name}}</div>
+  <br>
+  <table class="table" *ngIf="symptoms">
+    <thead class="thead-dark">
+      <tr>
+          <th scope="col">#</th >
+          <th scope="col">Symptoms</th >
+          <th scope="col">Select</th >
+      </tr>
+      <tr>
+        <td scope="col">Action</td>
+        <td scope="col" colspan="2">
+          <button (click)="onSubmitSymptoms()">Submit</button>
+        </td>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of symptoms; let i=index">
+        <th scope="row">{{i +1}}</th>
+        <td>{{s.name}}</td>
+        <td><input type="checkbox" id="{{s._id}}" [ngModel]="_" (ngModelChange)="onSelect($event, s._id)"><label for="{{s._id}}">Select</label></td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!symptoms">No Symptoms currently available.</div>
+</div>

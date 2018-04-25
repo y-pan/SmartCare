@@ -47,6 +47,22 @@ export class DataService {
     ).map((res:Response) => res.json());
   }
 
+  loadSymptoms(){
+    let url = this.getBaseApi(this.serverMode) + "symptom/all";
+    return this.http.get(url).map((res:Response) => res.json());
+  }
+
+  getOneDiseaseBestMatch(symptoms){
+    /**{
+  "symptoms":["5adfe5a01c75fc30bc337d7e", "5adfe7881c75fc30bc337d83"]
+  returns the {data:disease}
+} */
+  // console.log(symptoms);
+    let url = this.getBaseApi(this.serverMode) + "disease/getOneBestMatch";
+    let headers:any = { headers: new Headers({ 'Content-Type': 'application/json' })};
+    return this.http.post(url, JSON.stringify({symptoms:symptoms}), headers).map((res:Response) => res.json());
+  }
+  
   searchPatient(searchJson){
     /** expecting json: { email:email, firstname:firstname}, could be 1+ search critirias.
      * returns array of obj {data:[{user}]} that matches

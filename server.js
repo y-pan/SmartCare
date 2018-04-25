@@ -2,6 +2,8 @@ const express = require('express');
 const userRouter = require('./routes/user.router');
 const vitalsignRouter = require('./routes/vitalsign.router');
 const tipRouter = require('./routes/tip.router');
+const symptomRouter = require('./routes/symptom.router');
+const diseaseRouter = require('./routes/disease.router');
 
 const bodyParser = require('body-parser');
 
@@ -114,6 +116,8 @@ app.get("/", (req, res)=>{
 app.use("/api/user", userRouter); /** userRouter */
 app.use("/api/vitalsign", vitalsignRouter); /** vitalsignRouter */
 app.use("/api/tip", tipRouter); /** tipRouter */
+app.use("/api/symptom", symptomRouter); /** symptonRouter */
+app.use("/api/disease", diseaseRouter); /** diseaseRouter */
 
 
 app.listen(port, ()=>{

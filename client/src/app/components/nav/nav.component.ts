@@ -26,12 +26,15 @@ export class NavComponent implements OnInit {
     , private dataService:DataService
   ) { 
     
+    /** THIS MAY NOT BE USED, message confict??? */
       this.messageService.listen().subscribe((msg:any)=>{
         switch(msg){
           case this.configService.MSG_USER_LOGGEDOUT:
-            this.doAfterLoggedOut();break;
+            this.doAfterLoggedOut();
+            break;
           case this.configService.MSG_USER_LOGGEDIN:
-            this.doAfterLoggedIn();break;
+            this.doAfterLoggedIn();
+            break;
           case this.configService.MSG_ON_NAV_HOME:
             this.displayNav = 0;
             break;
@@ -47,6 +50,9 @@ export class NavComponent implements OnInit {
           case this.configService.MSG_ON_NAV_MYVITALSIGNS:
             this.displayNav = 2;
             break;  
+          case this.configService.MSG_ON_NAV_SYMPTOMS:
+            this.displayNav = 4;
+            break;
         }
       })
     
@@ -120,6 +126,10 @@ export class NavComponent implements OnInit {
     this.messageService.filter(this.configService.MSG_SHOW_SENDTIPS);  
   }
 
+  getSymptoms(){
+    this.displayNav = 4;
+    this.messageService.filter(this.configService.MSG_SHOW_SYMPTOMS);
+  }
   getMyTips(){
     this.displayNav = 2;
     this.messageService.filter(this.configService.MSG_SHOW_MYTIPS);  
