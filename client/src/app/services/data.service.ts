@@ -52,6 +52,10 @@ export class DataService {
     return this.http.get(url).map((res:Response) => res.json());
   }
 
+  getGames(){
+    let url = this.getBaseApi(this.serverMode) + "game/all";
+    return this.http.get(url).map((res:Response) => res.json());
+  }
   getOneDiseaseBestMatch(symptoms){
     /**{
   "symptoms":["5adfe5a01c75fc30bc337d7e", "5adfe7881c75fc30bc337d83"]

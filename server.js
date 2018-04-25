@@ -4,6 +4,7 @@ const vitalsignRouter = require('./routes/vitalsign.router');
 const tipRouter = require('./routes/tip.router');
 const symptomRouter = require('./routes/symptom.router');
 const diseaseRouter = require('./routes/disease.router');
+const gameRouter = require('./routes/game.router');
 
 const bodyParser = require('body-parser');
 
@@ -118,6 +119,7 @@ app.use("/api/vitalsign", vitalsignRouter); /** vitalsignRouter */
 app.use("/api/tip", tipRouter); /** tipRouter */
 app.use("/api/symptom", symptomRouter); /** symptonRouter */
 app.use("/api/disease", diseaseRouter); /** diseaseRouter */
+app.use("/api/game", gameRouter); /** gameRouter */
 
 
 app.listen(port, ()=>{

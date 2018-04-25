@@ -10,6 +10,7 @@ export class ConfigService {
   MSG_ON_NAV_MYTIPS: string = "onNavMyTips";
   MSG_ON_NAV_MYVITALSIGNS: string = "onNavMyVitalsigns";
   MSG_ON_NAV_SYMPTOMS:string = "MSG_ON_NAV_SYMPTOMS";
+  MSG_ON_NAV_GAMES:string = "MSG_ON_NAV_GAMES";
 
   /** signals to show/hide components, triggered by nav */
   MSG_SHOW_PROFILE:string = "showUserProfile"; /** show user profile like name, email,... */
@@ -23,6 +24,7 @@ export class ConfigService {
   MSG_SHOW_MYVITALSIGNS:string = "showMyVitalsigns"; /** show vitalsigns for patient, added by a nurse */
   MSG_SHOW_SENDALERT:string = "MSG_SHOW_ALERT";
   MSG_SHOW_SYMPTOMS:string = "MSG_SHOW_SYMPTOMS";
+  MSG_SHOW_GAMES:string = "MSG_SHOW_GAMES";
 
   /** nurse parts */
   MSG_SHOW_SEARCHPATIENT:string="MSG_SHOW_SEARCHPATIENT"; 

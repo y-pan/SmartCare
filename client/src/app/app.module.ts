@@ -20,6 +20,7 @@ import { SendtipsComponent } from './components/sendtips/sendtips.component';
 import { EmailComponent } from './components/email/email.component';
 import { SearchpatientComponent } from './components/searchpatient/searchpatient.component';
 import { SymptomsComponent } from './components/symptoms/symptoms.component';
+import { GameComponent } from './components/game/game.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SymptomsComponent } from './components/symptoms/symptoms.component';
     SendtipsComponent,
     EmailComponent,
     SearchpatientComponent,
-    SymptomsComponent
+    SymptomsComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,

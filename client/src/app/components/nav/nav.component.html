@@ -19,35 +19,37 @@
           <a class="nav-link" *ngIf="!isLoggedIn" (click)="showSignUp()">SignUp</a>
         </li>
 
+        <!-- patient navs -->
+
         <li class="nav-item" [ngClass]="{active :displayNav == 1}">
-          <!-- patient view related tests (vitalsigns) -->
           <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="getMyVitalSigns()">Tests</a>
         </li>
         <li class="nav-item" [ngClass]="{active :displayNav == 4}">
-          <!-- patient view related tips -->
           <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="getSymptoms()">Symptoms</a>
         </li>
         <li class="nav-item" [ngClass]="{active :displayNav == 2}">
-          <!-- patient view related tips -->
           <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="getMyTips()">Tips</a>
         </li>
+        <li class="nav-item" [ngClass]="{active :displayNav == 5}">
+          <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="getGames()">Games</a>
+        </li>
         <li class="nav-item" [ngClass]="{active :displayNav == 3}">
-          <!-- patient view related tips -->
           <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="showSendAlert()">Send Alert</a>
         </li>
 
+
+
+        <!-- nurse navs -->
+
         <li class="nav-item" [ngClass]="{active :displayNav == 13}">
-          <!-- nurse enter patient data: vital signs -->
           <a class="nav-link" *ngIf="isNurseLoggedIn" (click)="openSearchPatient()">Search Patient</a>
         </li>
 
         <li class="nav-item" [ngClass]="{active :displayNav == 11}">
-          <!-- nurse enter patient data: vital signs -->
           <a class="nav-link" *ngIf="isNurseLoggedIn" (click)="openEnterVitalSigns()">Enter Vital Signs</a>
         </li>
 
         <li class="nav-item" [ngClass]="{active :displayNav == 12}">
-          <!-- nurse send patient some tips -->
           <a class="nav-link" *ngIf="isNurseLoggedIn" (click)="openSendTips()">Send Tips</a>
         </li>
 

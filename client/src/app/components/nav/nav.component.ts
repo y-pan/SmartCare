@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
     , private dataService:DataService
   ) { 
     
-    /** THIS MAY NOT BE USED, message confict??? */
+    /** NEED THESE messages: */
       this.messageService.listen().subscribe((msg:any)=>{
         switch(msg){
           case this.configService.MSG_USER_LOGGEDOUT:
@@ -134,6 +134,10 @@ export class NavComponent implements OnInit {
     this.displayNav = 2;
     this.messageService.filter(this.configService.MSG_SHOW_MYTIPS);  
     // this.messageService.filter(this.configService.MSG_ON_NAV_MYCOURSES);
+  }
+  getGames(){
+    this.displayNav = 5;
+    this.messageService.filter(this.configService.MSG_SHOW_GAMES)
   }
   showSendAlert(){
     this.displayNav = 3;

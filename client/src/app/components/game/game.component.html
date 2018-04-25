@@ -1,0 +1,29 @@
+
+<div class="container" *ngIf="toDisplayGames">
+  <h3>Web Games</h3>
+  <div class="err" *ngIf="errorInGames" style="color:red;">
+      {{errorInMyGames}}
+    </div>
+  <table class="table" *ngIf="games">
+    <thead class="thead-dark">
+      <tr>
+          <th scope="col">#</th >
+          <th scope="col">Game</th >
+          <th scope="col">Image</th >
+          <th scope="col">Description</th >
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let g of games; let i=index">
+        <th scope="row">{{i +1}}</th>
+        <td><a href="{{g.link}}">{{g.name}}</a></td>
+        <th scope="row"><a href="{{g.link}}">
+          <img src="{{g.img}}" alt="{{g.name}}" width="200" height="auto"></a>
+        </th>
+        <td>{{g.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!games">No Games currently available.</div>
+</div>
