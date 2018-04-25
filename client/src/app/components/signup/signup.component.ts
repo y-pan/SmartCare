@@ -50,7 +50,6 @@ export class SignupComponent implements OnInit {
     // this.display(false);
     
     this.reset();
-    this.mock_user();
   }
 
   reset(){
@@ -82,19 +81,7 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  mock_user(){
-    this.user = {
-      password:"Aa!111",
-      passwordAgain:"Aa!111",
-      firstname:"firstname_m1",
-      lastname:"lastname_m1",
-      email:"email_m1@gmail.com",
-      healthcard: "100200401",
-      phone:"6470000001",
-      responder:"panyunkui2@gmail.com",
-      usertype:0
-    }
-  }
+
 
   onSelectUserType(index){
     this.usertype = index;
