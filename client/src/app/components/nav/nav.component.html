@@ -22,7 +22,7 @@
         <!-- patient navs -->
 
         <li class="nav-item" [ngClass]="{active :displayNav == 1}">
-          <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="getMyVitalSigns()">Tests</a>
+          <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="getMyVitalSigns()">Vital Signs</a>
         </li>
         <li class="nav-item" [ngClass]="{active :displayNav == 4}">
           <a class="nav-link" *ngIf="isPatientLoggedIn" (click)="getSymptoms()">Symptoms</a>
