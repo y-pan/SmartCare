@@ -9,7 +9,7 @@ import {ConfigService} from './config.service'
 export class DataService {
   loginUser:any; /** after signup/login, keep the user info here */
   targetPatient:any; /** when nurse searched and select the patient, this obj will be set */
-  serverMode:number = 0; /** 0-heroku, 1-localhost */
+  serverMode:number = 0; /**   0-heroku, 1-localhost   */
   
   getBaseApi(serverMode:number){
     if(serverMode == 0){
